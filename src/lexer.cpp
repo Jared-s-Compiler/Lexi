@@ -1,8 +1,8 @@
-#include "../../include/Technical/lexer.hpp"
-#include "../../include/Technical/reader.hpp"
+#include "../include/lexer.hpp"
+#include "../include/reader.hpp"
 
-#include "../../include/Domain/lexeme.hpp"
-#include "../../include/Domain/lexer_rules.hpp"
+#include "../include/lexeme.hpp"
+#include "../include/lexer_rules.hpp"
 
 #include <ctype.h>
 #include <stdio.h>
@@ -20,17 +20,28 @@ lexer::lexer(lexerRules lexRules, sourceFile inputFile) {
 }
 
 void lexer::processLine(int lineno, std::string line) {
-  if (std::all_of(std::begin(line), std::end(line), isspace) || line.empty()) {
-    return;
-  }
+  /*
+   * Given a line from the source file
+   * apply every regex to the string and break early
+   * if there is a match to avoid excess processing
+   *
+   * @param lineno : given line number of the source file
+   * @param line : current line being processed
+   *
+   * @return void
+  */
 
   std::vector<std::string> reserved = this->rules.getReservedWords();
-
+  bool _has_matched = false;
   for (const auto& [identifier, _regex] : this->rules) {
-    // bool can_break_immediate = false;
+    if (_has_matched) {
+      break;
+    }
     for (auto it = std::sregex_iterator(line.begin(), line.end(), _regex);
          it != std::sregex_iterator(); it++) {
-
+      // This loop applies the regex, we need to set a flag here
+      // if we have already obtained a match
+      
       std::smatch sm = *it;
 
       size_t start = sm.position(0);
@@ -51,6 +62,8 @@ void lexer::processLine(int lineno, std::string line) {
                     element) == std::end(this->tokens) &&
           start != end) {
         this->tokens.push_back(element);
+        //_has_matched = true;
+        //_has_matched = identifier != "COMMENT";
       }
 
       if (end <= line.size() && identifier == "COMMENT") {

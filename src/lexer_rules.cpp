@@ -1,4 +1,4 @@
-#include "../../include/Domain/lexer_rules.hpp"
+#include "../include/lexer_rules.hpp"
 #include <map>
 #include <regex>
 #include <string>

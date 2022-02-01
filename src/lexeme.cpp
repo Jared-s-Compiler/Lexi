@@ -1,4 +1,4 @@
-#include "../../include/Domain/lexeme.hpp"
+#include "../include/lexeme.hpp"
 #include <algorithm>
 #include <iomanip>
 #include <iostream>

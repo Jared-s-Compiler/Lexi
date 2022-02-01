@@ -1,4 +1,4 @@
-#include "../../include/Technical/reader.hpp"
+#include "../include/reader.hpp"
 
 #include <fstream>
 #include <iostream>

@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "../include/Technical/lexer.hpp"
-#include "../include/Technical/reader.hpp"
+#include "../include/lexer.hpp"
+#include "../include/reader.hpp"
 
 int main() {
   std::cout << "hey mom!" << std::endl;

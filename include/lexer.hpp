@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../Domain/lexeme.hpp"
-#include "../Domain/lexer_rules.hpp"
-#include "../Technical/reader.hpp"
+#include "lexeme.hpp"
+#include "lexer_rules.hpp"
+#include "reader.hpp"
 
 #include <map>
 #include <regex>
